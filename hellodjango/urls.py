@@ -1,10 +1,15 @@
 from django.conf.urls import patterns, include, url
+from testProgram import storeData, storeData_form, displayData, clearData
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^$', storeData_form),
+    (r'^dbadd/$', storeData),
+    (r'^dbdisplay/$', displayData),
+    (r'^dbclear/$', clearData),
     # Examples:
     # url(r'^$', 'hellodjango.views.home', name='home'),
     # url(r'^hellodjango/', include('hellodjango.foo.urls')),

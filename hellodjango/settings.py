@@ -1,5 +1,8 @@
 # Django settings for hellodjango project.
+import dj_database_url
+import os.path
 
+DEPLOY = True
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -9,16 +12,30 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+if DEPLOY:
+    DATABASES = {
+     'default': {
+      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+      'NAME': 'd94fthict2kiq2',
+      'HOST': 'ec2-54-243-190-152.compute-1.amazonaws.com',
+      'PORT': 5432,
+      'USER': 'norcnwidklmwve',
+      'PASSWORD': 'uNKcxv4uPtSom4WqiYcu_y2TF4'
+      }
     }
-}
+else:
+    DATABASES = {'default': dj_database_url.config(default='postgres://postgres@localhost:5432/test')}
+#DATABASES = {'default': (default='postgres://localhost')}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#        'NAME': '',                      # Or path to database file if using sqlite3.
+#        'USER': '',                      # Not used with sqlite3.
+#        'PASSWORD': '',                  # Not used with sqlite3.
+#        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+#        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+#    }
+#}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -82,6 +99,7 @@ SECRET_KEY = 'pj8z)$vk)64^iodv_$2-cmmwl8n((qcmjjdpz)y4-e&amp;up8z_i^'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
+    
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
@@ -103,16 +121,18 @@ ROOT_URLCONF = 'hellodjango.urls'
 WSGI_APPLICATION = 'hellodjango.wsgi.application'
 
 TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
+#    'django.contrib.auth',
+#    'django.contrib.contenttypes',
+#    'django.contrib.sessions',
+#    'django.contrib.sites',
+    'hellodjango.somedata',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
