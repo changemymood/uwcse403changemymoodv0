@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, include
 from testProgram import storeData, storeData_form, displayData, clearData
 
 # Uncomment the next two lines to enable the admin:
@@ -7,6 +7,7 @@ from testProgram import storeData, storeData_form, displayData, clearData
 
 urlpatterns = patterns('',
     (r'^$', storeData_form),
+    (r'^api/', include('hellodjango.myapi.urls')),
     (r'^dbadd/$', storeData),
     (r'^dbdisplay/$', displayData),
     (r'^dbclear/$', clearData),
