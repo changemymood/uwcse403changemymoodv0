@@ -43,13 +43,15 @@ class FlickrHandler(BaseHandler):
     def read(self, request):
         if 'q' in request.GET:
             user_input = request.GET['q']
-            flickr = flickrapi.FlickrAPI(api_key)
-            pics = flickr.photos_search(api_key=api_key, text=user_input)
-    
-            length = len(pics[0])
-            randompic = int(random.random() * length)
-            first_attrib = pics[0][randompic].attrib
-            link = 'http://static.flickr.com/' + first_attrib['server'] + '/' + first_attrib['id'] + "_" + first_attrib['secret'] + ".jpg"
-            return json.dumps({"url": link}, sort_keys=True)
+
         else:
-            return json.dumps({"error": "no query"}, sort_keys=True)
+            user_input = 'joke'   
+        
+        flickr = flickrapi.FlickrAPI(api_key)
+        pics = flickr.photos_search(api_key=api_key, text=user_input)
+
+        length = len(pics[0])
+        randompic = int(random.random() * length)
+        first_attrib = pics[0][randompic].attrib
+        link = 'http://static.flickr.com/' + first_attrib['server'] + '/' + first_attrib['id'] + "_" + first_attrib['secret'] + ".jpg"
+        return json.dumps({"url": link}, sort_keys=True)
