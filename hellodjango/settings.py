@@ -133,6 +133,7 @@ INSTALLED_APPS = (
 #    'django.contrib.sessions',
 #    'django.contrib.sites',
     'hellodjango.somedata',
+    'hellodjango.flickr',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:

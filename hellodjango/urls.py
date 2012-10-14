@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include
 from testProgram import storeData, storeData_form, displayData, clearData
+from hellodjango.testProgram import searchFlickr
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -11,6 +12,7 @@ urlpatterns = patterns('',
     (r'^dbadd/$', storeData),
     (r'^dbdisplay/$', displayData),
     (r'^dbclear/$', clearData),
+    (r'^flickr/$', searchFlickr),
     # Examples:
     # url(r'^$', 'hellodjango.views.home', name='home'),
     # url(r'^hellodjango/', include('hellodjango.foo.urls')),
